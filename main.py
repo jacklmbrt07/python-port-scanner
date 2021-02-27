@@ -20,8 +20,8 @@ from unittest import main
 # print(ports + '\n')
 
 # # Verbose called with host name -- multiple ports returned
-# ports = port_scanner.get_open_ports("scanme.nmap.org", [20, 80], True)
-# print(ports + '\n')
+ports = port_scanner.get_open_ports("scanme.nmap.org", [20, 80], True)
+print(ports + '\n')
 
 # # Run unit tests automatically
-main(module='test_module', exit=False)
+# main(module='test_module', exit=False)
