@@ -1,19 +1,26 @@
 import socket
+import threading
 
 def get_open_ports(target, port_range, verbose=None):
     open_ports = []
 
     start, end = port_range
     
-    for i in range(start, (end+1)):
+    def port_scan(port):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        port = i
-        result = s.connect_ex((target, port))
-        if result == 0:
+        s.settimeout(0.5)
+        try:
+            result = s.connect((target, port))
             print(f"The port {port} is Open.")
-            open_ports.append(port)
-        else:
+            if result:
+                open_ports.append(port)
+            result.close()
+        except:
             print(f'The port {port} is Closed.')
-        s.close()
+        
+    
+    for i in range(start, (end+1)):
+        t = threading.Thread(target=port_scan, kwargs={'port':i})
+        t.start()
 
     return(open_ports)
