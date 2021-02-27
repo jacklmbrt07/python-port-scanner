@@ -1,11 +1,11 @@
 import socket
+import common_ports
 # import threading
 
 def get_open_ports(target, port_range, Verbose=None):
     open_ports = []
     start, end = port_range
-    hostname = socket.gethostname()
-    ip_address = socket.gethostbyname(hostname) 
+    ip_address = socket.gethostbyname(target) 
        
     def port_scan(port):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -17,18 +17,21 @@ def get_open_ports(target, port_range, Verbose=None):
             s.close()
         except:
             print(f'The port {port} is Closed.')
+        finally:
+            return
     
     for i in range(start, (end+1)):
-        port_scan(i)
+        port = i
+        port_scan(port)
         
     if Verbose:
-        #Open ports for scanme.nmap.org (45.33.32.156)
-        # PORT     SERVICE
-        # 22       ssh
-        # 80       http
         string = f"Open ports for {target} ({ip_address})\nPORT     SERVICE\n"
-        # {portnumber}{9 - portnumberlength * ' '}{service}
         port_arr = []
+        
+        for port in open_ports:
+            space_length = 9 - len(str(port))
+            common_port = common_ports.ports_and_services
+            port_arr.append(f"{port}{space_length * ' '}{common_port[port]}")
         
         return string + '\n'.join(port_arr)
     else: 
