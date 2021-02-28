@@ -5,9 +5,15 @@ import common_ports
 def get_open_ports(target, port_range, Verbose=None):
     open_ports = []
     start, end = port_range
-    ip_address = socket.gethostbyname(target) 
+    try:
+        ip_address = socket.gethostbyname(target) 
+    except:
+        return "Error: Invalid IP address"
+    print("IP ADDRESS: ", ip_address)
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.settimeout(0.5)
+    print(s.connect((target, 22)))
+
        
     def port_scan(port):
         try:
