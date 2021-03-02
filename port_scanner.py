@@ -1,6 +1,6 @@
 import socket
 import common_ports
-# import threading
+import threading
 
 def get_open_ports(target, port_range, Verbose=None):
     open_ports = []
