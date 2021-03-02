@@ -1,34 +1,46 @@
 import socket
 import common_ports
-import threading
 
 def get_open_ports(target, port_range, Verbose=None):
     open_ports = []
     start, end = port_range
-    try:
-        ip_address = socket.gethostbyname(target) 
-    except:
-        return "Error: Invalid IP address"
-    print("IP ADDRESS: ", ip_address)
+    print("URL: ", socket.gethostbyaddr(target))
+    
+    if target[0].isdigit():
+        ip = True
+    else:
+        ip = False
+    
+    # try:
+    #     url = urllib.request.urlopen(target)
+    #     print(url.read())
+    # except:
+    #     return "ERROR: Invalid URL"
+    
+    # try:
+    #     ip_address = socket.gethostbyname(target) 
+    # except:
+    #     return "Error: Invalid IP address"
+    
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.settimeout(0.5)
-    print(s.connect((target, 22)))
-
        
     def port_scan(port):
         try:
             s.connect((target, port))
             print(f"The port {port} is Open.")
             open_ports.append(port)
-        except:
-            print(f'The port {port} is Closed.')
-        finally:
-            s.close()
-            return
-    
+            # s.close()
+        except socket.gaierror:
+            if ip == True:
+                return('Error: Invalid IP address')
+            else:
+                return('Error: Invalid hostname')
+            
     for i in range(start, (end+1)):
         port = i
         port_scan(port)
+        s.close
         
     if Verbose:
         string = f"Open ports for {target} ({ip_address})\nPORT     SERVICE\n"

@@ -3,8 +3,8 @@ import port_scanner
 from unittest import main
 
 # Called with URL
-# ports = port_scanner.get_open_ports("209.216.230.240", [440, 445])
-# print("Open ports:", ports)
+ports = port_scanner.get_open_ports("209.216.230.240", [440, 445])
+print("Open ports:", ports)
 # expected 443 open
 
 # # Called with ip address
@@ -20,11 +20,11 @@ from unittest import main
 # print(ports + '\n')
 
 # # Verbose called with host name -- multiple ports returned
-# ports = port_scanner.get_open_ports("scanme.nmap.org", [20, 80], True)
+# ports = port_scanner.get_open_ports("398ywdfkajskj23", [20, 80], True)
 # print(ports + '\n')
 
-ports = port_scanner.get_open_ports("scanme.nmap", [22, 42], False)
-print(ports)
+# ports = port_scanner.get_open_ports("ljsdflkjasdf", [22, 42], False)
+# print(ports)
 
 # # Run unit tests automatically
 # main(module='test_module', exit=False)
