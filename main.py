@@ -25,6 +25,14 @@ from unittest import main
 
 # ports = port_scanner.get_open_ports("ljsdflkjasdf", [22, 42], False)
 # print(ports)
+# ports = port_scanner.get_open_ports("104.26.10.78", [440, 450], True)
+# print(ports)
+# expected = "Open ports for hackthissite.org (137.74.187.104)\nPORT     SERVICE\n443      https"
+
+
+# err = port_scanner.get_open_ports("scanme.nmap", [22, 42], False)
+# print(err)
+# expected = "Error: Invalid hostname"
 
 # # Run unit tests automatically
 main(module='test_module', exit=False)

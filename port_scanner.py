@@ -39,9 +39,8 @@ def get_open_ports(target, port_range, Verbose=None):
             return open_ports
         
     except socket.gaierror:
-        if ip == True:
             return "Error: Invalid IP address"
-        else:
+    except socket.herror:
             return "Error: Invalid hostname"
         
     
