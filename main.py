@@ -2,9 +2,9 @@
 import port_scanner
 from unittest import main
 
-# Called with URL
-ports = port_scanner.get_open_ports("209.216.230.240", [440, 445])
-print("Open ports:", ports)
+# # Called with URL
+# ports = port_scanner.get_open_ports("209.216.230.240", [440, 445])
+# print("Open ports:", ports)
 # expected 443 open
 
 # # Called with ip address
@@ -27,4 +27,4 @@ print("Open ports:", ports)
 # print(ports)
 
 # # Run unit tests automatically
-# main(module='test_module', exit=False)
+main(module='test_module', exit=False)
